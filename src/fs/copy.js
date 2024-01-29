@@ -2,8 +2,10 @@ import { access, readdir, copyFile, mkdir } from 'fs/promises';
 import path from 'path';
 
 const copy = async () => {
-    const sourceFolder = 'files';
-    const newFolder = 'files_copy';
+    const currentDirPath = process.cwd();
+
+    const sourceFolder = path.join(currentDirPath, 'src/fs/files');
+    const newFolder = path.join(currentDirPath, 'src/fs/files_copy');
 
     try {
         await access(sourceFolder);

@@ -10,6 +10,4 @@ const parseEnv = () => {
     }
 };
 
-export { parseEnv };
-
 parseEnv();

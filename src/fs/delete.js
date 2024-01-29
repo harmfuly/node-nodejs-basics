@@ -1,8 +1,11 @@
 import { error } from 'console';
 import { access, unlink } from 'fs/promises';
+import path from 'path';
 
 const remove = async () => {
-    const fileToRemove = 'files/fileToRemove.txt';
+    const currentDirPath = process.cwd();
+
+    const fileToRemove = path.join(currentDirPath, 'src/fs/files/fileToRemove.txt');
     
     try {
         await access(fileToRemove);

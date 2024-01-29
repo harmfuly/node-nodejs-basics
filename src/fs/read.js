@@ -1,7 +1,11 @@
-import { access, readFile } from 'fs/promises'
+import { access, readFile } from 'fs/promises';
+import path from 'path';
 
 const read = async () => {
-    const filePath = 'files/fileToRead.txt';
+    const currentDirPath = process.cwd();
+
+    const fileName = 'src/fs/files/fileToRead.txt';
+    const filePath = path.join(currentDirPath, fileName);
 
     try {
         await access(filePath);

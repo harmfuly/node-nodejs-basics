@@ -3,17 +3,17 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
 const create = async () => {
-    let filePath; 
+
+    const currentFilePath = fileURLToPath(import.meta.url);
+    const currentDirPath = dirname(currentFilePath);
+
+    console.log('currentDirPath:', currentDirPath);
+    
+    const filePath = join(currentDirPath, 'files', 'fresh.txt');
+
+    console.log('filePath', filePath);
 
     try {
-        const currentFilePath = fileURLToPath(import.meta.url);
-        const currentDirPath = dirname(currentFilePath);
-
-        console.log('currentDirPath:', currentDirPath);
-        
-        filePath = join(currentDirPath, 'files', 'fresh.txt');
-
-        console.log('filePath', filePath);
 
         await access(filePath);
         throw new Error('FS operation failed: File already exists');

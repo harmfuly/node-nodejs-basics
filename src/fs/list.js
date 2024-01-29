@@ -1,7 +1,9 @@
 import { access, readdir } from 'fs/promises';
+import path from 'path';
 
 const list = async () => {
-     const folderPath = 'files';
+    const currentDirPath = process.cwd();
+    const folderPath = path.join(currentDirPath, 'src/fs/files');
 
      try {
         await access(folderPath);
