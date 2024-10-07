@@ -11,7 +11,9 @@ const read = async () => {
         await access(filePath);
 
         const fileContent = await readFile(filePath, 'utf-8');
-        console.log('Content of file:', fileContent);
+        
+        console.log('\x1b[34m%s\x1b[0m', 'Content of file:');
+        console.log(fileContent);
     }
     catch (error) {
         if (error.code === 'ENOENT') {
