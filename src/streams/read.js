@@ -1,5 +1,4 @@
 import { createReadStream } from 'fs';
-import { createWriteStream } from 'fs';
 import path from 'path';
 
 const read = async () => {
