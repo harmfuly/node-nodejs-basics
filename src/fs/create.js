@@ -14,7 +14,6 @@ const create = async () => {
     console.log('filePath', filePath);
 
     try {
-
         await access(filePath);
         throw new Error('FS operation failed: File already exists');
     }

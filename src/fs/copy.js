@@ -11,11 +11,16 @@ const copy = async () => {
         await access(sourceFolder);
 
         try {
+
             await access(newFolder);
-            throw new Error('FS operation failed: New folder already exists');
-        }
-        catch (newFolderError) {
+            
+            console.error('FS operation failed: New folder already exists');
+            
+            return;
+
+        } catch (newFolderError) {
             if (newFolderError.code === 'ENOENT') {
+
                 await mkdir(newFolder);
 
                 const files = await readdir(sourceFolder);
@@ -30,14 +35,15 @@ const copy = async () => {
                 console.log('Folder copied successfully.');
 
             } else {
-                throw new Error (`FS operation failed: ${newFolderError.message}`);
+               console.error(`FS operation failed: ${newFolderError.message}`);
                 }
             }
+            
         } catch (sourceFolderError) {
             if (sourceFolderError.code === 'ENOENT') {
-                throw new Error('FS operation failed: Source folder not found');
+                console.error('FS operation failed: Source folder not found');
             } else {
-                throw new Error(`FS operation failed: ${sourceFolderError.message}`);
+                console.error(`FS operation failed: ${sourceFolderError.message}`);
             }
         }
 };
